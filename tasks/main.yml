@@ -3,6 +3,10 @@
 - include_tasks: variables.yml
 
 # Setup/install tasks.
+
+- include_tasks: setup-AmazonLinux.yml
+  when: ansible_distribution == "Amazon" and ansible_distribution_major_version == "NA"
+
 - include_tasks: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
