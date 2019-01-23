@@ -10,7 +10,11 @@
 
 - name: Include OS-specific variables (RedHat).
   include_vars: "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
-  when: ansible_os_family == "RedHat"
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version != "NA"
+
+- name: Include OS-specific variables (AmazonLinux).
+  include_vars: "{{ ansible_os_family }}-7.yml"
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "NA"
 
 - name: Define mysql_packages.
   set_fact:
